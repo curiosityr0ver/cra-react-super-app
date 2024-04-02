@@ -9,17 +9,22 @@ const Registration = () => {
 	const [mobile, setMobile] = useState();
 	const [shareData, setShareData] = useState(false);
 
-	useEffect(() => {
-		// console.log({ name, username, email, mobile, shareData });
-	}, [name, username, email, mobile, shareData]);
+	// useEffect(() => {
+	// 	// console.log({ name, username, email, mobile, shareData });
+	// }, [name, username, email, mobile, shareData]);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (!name || !username || !email || !mobile) {
 			alert("Please fill all fields");
 			return;
+		} else {
+			localStorage.setItem(
+				"currentUser",
+				JSON.stringify({ name, username, email, mobile })
+			);
 		}
-		console.log({ name, username, email, mobile, shareData });
+		console.log(JSON.parse(localStorage.getItem("currentUser")));
 	};
 
 	return (
